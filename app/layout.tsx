@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/assets/styles/globals.css";
+import { APP_DESC, APP_NAME, SERVER_URL } from "@/lib/constants";
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Prostore",
-  description: "A modern e-Commerce site built with React and Next",
+  title: {
+		template: `%s | Prostore`,
+		default: APP_NAME,
+	},
+  description: APP_DESC,
+	metadataBase: new URL(SERVER_URL)
 };
 
 export default function RootLayout({
@@ -16,9 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`} >
-        {children}
-      </body>
+      <body className={`${inter.className} antialiased`}>
+				{children}
+			</body>
     </html>
   );
 }
