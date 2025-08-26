@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-		"clean": "rm -rf .next node_modules package-lock.json"
+    "clean": "rm -rf .next node_modules package-lock.json"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
