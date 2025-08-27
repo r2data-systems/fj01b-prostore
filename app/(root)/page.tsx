@@ -1,14 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { resolve } from "path";
 
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+const delayTest1 = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const metadata = {
 	title: 'Home'
 };
 
+// make fn async for delayTest1 to work
 const HomePage = async () => {
-	await delay(3000);
+	//await delayTest1(3000);
+	await new Promise(resolve => setTimeout(resolve, 1000));
+
 	return ( <Button>Prostore</Button> );
 }
  
