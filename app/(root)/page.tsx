@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/button";
+import sampleData from "@/db/sample-data";
+import ProductList from "@/components/product/product-list";
 
 export const metadata = {
 	title: 'Home'
@@ -7,8 +8,13 @@ export const metadata = {
 // make fn async for delayTest1 to work
 const HomePage =  () => {
 	//await new Promise(resolve => setTimeout(resolve, 1000));
+	console.log(sampleData.products);
 
-	return ( <Button>Prostore</Button> );
+	return ( 
+		<>
+			<ProductList data={sampleData.products} title="Newest Arrivals" limit={4}/>
+		</>
+	);
 }
  
 export default HomePage;
