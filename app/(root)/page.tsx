@@ -1,4 +1,5 @@
-import sampleData from "@/db/sample-data";
+//import sampleData from "@/db/sample-data";
+import { getLatestProducts } from "@/lib/actions/product.actions";
 import ProductList from "@/components/product/product-list";
 
 export const metadata = {
@@ -6,13 +7,14 @@ export const metadata = {
 };
 
 // make fn async for delayTest1 to work
-const HomePage =  () => {
+const HomePage =  async () => {
 	//await new Promise(resolve => setTimeout(resolve, 1000));
-	console.log(sampleData.products);
+	console.log('sampleData.products');
+	const latestProducts = await getLatestProducts();
 
 	return ( 
 		<>
-			<ProductList data={sampleData.products} title="Newest Arrivals" limit={4}/>
+			<ProductList data={latestProducts} title="Newest Arrivals" limit={4}/>
 		</>
 	);
 }
