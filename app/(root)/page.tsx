@@ -1,6 +1,6 @@
 //import sampleData from "@/db/sample-data";
 import { getLatestProducts } from "@/lib/actions/product.actions";
-import ProductList from "@/components/product/product-list";
+import ProductList from "@/components/shared/product/product-list";
 
 export const metadata = {
 	title: 'Home'

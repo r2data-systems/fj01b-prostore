@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "clean": "rm -rf .next node_modules package-lock.json",
-		"postinstall": "prisma generate"
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.15",
@@ -22,7 +22,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "tailwind-merge": "^3.3.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^4.1.5"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
