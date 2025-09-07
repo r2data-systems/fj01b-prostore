@@ -1,11 +1,13 @@
 'use server';
 
-import { PrismaClient } from '@/lib/generated/prisma';
+//import { PrismaClient } from '@/lib/generated/prisma';
+import {prisma} from '@/db/prisma';
 import { convert2PlainObject } from '../utils';
 import { LATEST_PRODUCTS_LIMIT } from '../constants';
 
 export async function getLatestProducts() {
-	const prisma = new PrismaClient();
+	// Only needs to be instantiated in prisma.ts
+	//const prisma = new PrismaClient();
 
 	const data = await prisma.product.findMany({
 		take: LATEST_PRODUCTS_LIMIT,
