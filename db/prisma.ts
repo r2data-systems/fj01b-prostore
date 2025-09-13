@@ -1,5 +1,7 @@
 // prisma-V6.ts
-import { PrismaClient } from '@/lib/generated/prisma'; // or relative, like '../../generated/prisma'
+// or relative, like '../../generated/prisma'
+//import { PrismaClient } from '@/lib/generated/prisma'; 
+import { PrismaClient } from '@prisma/client'; 
 import { PrismaNeon } from '@prisma/adapter-neon';
  
 const adapter = new PrismaNeon({ connectionString: process.env.DATABASE_URL! });

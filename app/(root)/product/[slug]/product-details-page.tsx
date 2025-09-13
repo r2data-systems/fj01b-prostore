@@ -76,3 +76,5 @@ const ProductDetailsPage = async (props: {
     </>
   );
 };
+
+export default ProductDetailsPage;
