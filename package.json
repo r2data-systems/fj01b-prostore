@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rm -rf .next node_modules package-lock.json",
-    "postinstall": "prisma generate"
+    "clean": "rm -rf .next node_modules package-lock.json prisma/migrations",
+    "postinstall": "npx prisma generate"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.1",

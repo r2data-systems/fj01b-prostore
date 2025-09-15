@@ -12,3 +12,10 @@ Re-seed
 Migrate - create ORM fn from schema
 		$> npx prisma migrate dev --name init
   
+From scratch
+$> npm run clean
+$> npx prisma dev // separate window
+$> npx prisma migrate reset --force
+$> npx prisma migrate dev --name init
+$> npx prisma generate
+$> npx next build
