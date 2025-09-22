@@ -25,3 +25,9 @@ export const insertProductSchema = z.object({
   banner: z.string().nullable,
   price: currency,
 });
+
+// schema for signing users in
+export const signInFormSchema = z.object({
+	email: z.email('Invalid e-mail address'),
+	password: z.string().min(6, 'Invalid password length')
+})
