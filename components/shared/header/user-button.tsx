@@ -8,6 +8,7 @@ import { UserIcon } from "lucide-react";
 const UserButton = async () => {
   const session = await auth();
 
+	// return; if NOT logged in
   if (!session) {
     return (
       <Button asChild>
@@ -18,7 +19,21 @@ const UserButton = async () => {
     );
   }
 
-  return <>User</>;
+	// return; if logged in
+	const firstInitial = session.user?.name?.charAt(0).toUpperCase() ?? '?';
+  return (
+		<div className="flex gap-2 items-center">
+			<DropdownMenu>
+				<DropdownMenuTrigger asChild>
+					<div className="flex items-center">
+						<Button variant='ghost' className="relative w-8 h-8 rounded-full ml-2 flex items-center justify-center bg-gray-200">
+							{firstInitial}
+						</Button>
+					</div>
+				</DropdownMenuTrigger>
+			</DropdownMenu>
+		</div>
+	);
 }
  
 export default UserButton;
