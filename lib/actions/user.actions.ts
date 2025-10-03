@@ -34,7 +34,16 @@ export async function signOutUser() {
 // Sign up user
 // this will use the actionState hook, parameters reflect this
 export async function signUpUser(prevState: unknown, formData: FormData) {
+	const fnString = 'signUpUser';
+
 	try {
+		console.log(`${fnString};Start`);
+
+		//console.log(`${fnString};name - ${formData.get('name')}`);
+		//console.log(`${fnString};email - ${formData.get('email')}`);
+		//console.log(`${fnString};password - ${formData.get('password')}`);
+		//console.log(`${fnString};confirmPassword - ${formData.get('confirmPassword')}`);
+
 		const user = signUpFormSchema.parse({
 			name: formData.get('name'),
 			email: formData.get('email'),
@@ -45,6 +54,8 @@ export async function signUpUser(prevState: unknown, formData: FormData) {
 		const plainPassword = user.password;
 		user.password = hashSync(user.password, 10);
 
+		console.log(`${fnString};PRE User Create`);
+
 		await prisma.user.create({
 			data: {
 				name: user.name,
@@ -52,6 +63,8 @@ export async function signUpUser(prevState: unknown, formData: FormData) {
 				password: user.password 
 			},
 		})
+
+		console.log(`${fnString};POST User Create`);
 
 		await signIn('credentials', {
 			email: user.email,
