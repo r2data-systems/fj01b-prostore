@@ -5,6 +5,7 @@ import { signIn, signOut } from "@/auth";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { hashSync } from 'bcrypt-ts-edge';
 import { prisma } from '@/db/prisma';
+import { formatErrors } from "../utils";
 
 // Sign in the user with credentials
 export async function signInWithCredentials(prevState: unknown, formData: FormData) {
@@ -39,11 +40,6 @@ export async function signUpUser(prevState: unknown, formData: FormData) {
 	try {
 		console.log(`${fnString};Start`);
 
-		//console.log(`${fnString};name - ${formData.get('name')}`);
-		//console.log(`${fnString};email - ${formData.get('email')}`);
-		//console.log(`${fnString};password - ${formData.get('password')}`);
-		//console.log(`${fnString};confirmPassword - ${formData.get('confirmPassword')}`);
-
 		const user = signUpFormSchema.parse({
 			name: formData.get('name'),
 			email: formData.get('email'),
@@ -74,10 +70,12 @@ export async function signUpUser(prevState: unknown, formData: FormData) {
 		return{success: true, message: 'User registered successfully'};
 
 	} catch (error) {
+		console.log(error);
+
 		if (isRedirectError(error)) {
 			throw error;
 		}
 
-		return {success: false, message: 'User NOT registered'};
+		return {success: false, message: formatErrors(error)};
 	}
 };
