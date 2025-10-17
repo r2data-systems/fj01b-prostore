@@ -85,7 +85,7 @@ const SignUpForm = () => {
           <div className="text-center text-destructive">{data.message}</div>
         )}
         <div className="text-sm text-center text-muted-foreground">
-          Already have an Account?{""}
+          Already have an Account?{" "}
           <Link href="/sign-in" target="_self" className="link">
             Sign In
           </Link>
