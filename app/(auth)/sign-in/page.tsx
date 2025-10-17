@@ -12,9 +12,7 @@ export const metadata: Metadata = {
 };
 
 const SignInPage = async (props: {
-	searchParams: Promise<{
-		callbackUrl: string
-	}>
+	searchParams: Promise<{ callbackUrl: string }>
 }) => {
 	const {callbackUrl} = await props.searchParams;
 	// different to a session in a client
