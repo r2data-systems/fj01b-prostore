@@ -1,10 +1,15 @@
-import NextAuth, { NextAuthConfig } from "next-auth";
+import NextAuth from 'next-auth';
+import { authConfig } from './auth.config';
 import {PrismaAdapter} from '@auth/prisma-adapter';
 import {prisma} from '@/db/prisma';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { compareSync } from 'bcrypt-ts-edge';
 
-export const config = {
+//-------------------------------------------------
+//import { cookies } from 'next/headers';
+//import { compare } from './lib/encrypt';
+
+export const { handlers, auth, signIn, signOut } = NextAuth({
 	pages: {
 		signIn: '/sign-in',
 		error: '/sign-in'
@@ -50,7 +55,8 @@ export const config = {
 		})
 	],
 	callbacks: {
-		async session({ session, user, trigger, token }: any) {
+		...authConfig.callbacks,
+		async session({ session, user, trigger, token }) {
 			// set the user ID from token
 			session.user.id = token.sub;
 			session.user.role = token.role;
@@ -79,7 +85,7 @@ export const config = {
     //},
 
 		// different order of parameters
-		async jwt({ session, user, trigger, token }: any) {
+		async jwt({ user, token }) {
 			// Assign user fields to token
 			if (user) {
 				token.role = user.role;
@@ -98,6 +104,6 @@ export const config = {
 			return token;
 		}
 	}
-} satisfies NextAuthConfig;
+});
 
-export const {handlers, auth, signIn, signOut} = NextAuth(config);
+//export const {handlers, auth, signIn, signOut} = NextAuth(config);
