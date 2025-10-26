@@ -6,7 +6,8 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import { compareSync } from 'bcrypt-ts-edge';
 
 //-------------------------------------------------
-//import { cookies } from 'next/headers';
+import { cookies } from 'next/headers';
+import { NextResponse } from 'next/server';
 //import { compare } from './lib/encrypt';
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
@@ -102,7 +103,35 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 				}
 			};
 			return token;
-		}
+		},
+		authorized({request, auth}: any) {
+			// Check for session cart cookie
+			if (!request.cookies.get('sessionCartID')) {
+				// Generate new session Cart ID cookie
+				const sessionCartID = crypto.randomUUID();
+
+				// Test
+				//console.log(sessionCartID);
+
+				// Clone the request headers
+				const newRequestHeaders = new Headers(request.headers)
+
+				// Create response and add the new headers
+				const response = NextResponse.next({
+					request: {
+						headers: newRequestHeaders
+					}
+				})
+
+				// now add the sessionCartID to the response cookie
+				response.cookies.set('sessionCartID', sessionCartID);
+
+				return response;
+			}
+			else {
+				return true;
+			};
+		},
 	}
 });
 
