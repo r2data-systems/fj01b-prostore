@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 
 import { auth } from "@/auth";
 import { ShippingAddress } from "@/types";
+import ShippingAddressForm from "./shipping-address-form"
 import { getMyCart } from "@/lib/actions/cart.actions";
 import { getUserByID } from "@/lib/actions/user.actions";
 
@@ -25,7 +26,9 @@ const ShippingAddressPage = async () => {
 
 	const user = await getUserByID(userID);
 	
-	return (<>Address</>);
+	return (<>
+		<ShippingAddressForm address={user.address as ShippingAddress}/>
+	</>);
 }
  
 export default ShippingAddressPage;
