@@ -86,9 +86,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     //},
 
 		// different order of parameters
-		async jwt({ user, token }) {
+		async jwt({ token, user, trigger }) {
 			// Assign user fields to token
 			if (user) {
+				token.id = user.id;
 				token.role = user.role;
 
 				// If user has no name; then use first part of email
@@ -101,6 +102,31 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 						data: {name: token.name}
 					});
 				}
+
+				// Persist session cart
+				if (trigger === 'signIn' || trigger === 'signUp') {
+					const cookiesObject = await cookies();
+					const sessionCartID = cookiesObject.get('sessionCartID')?.value;
+
+					if (sessionCartID) {
+						const sessionCart = await prisma.cart.findFirst({
+							where: {sessionCartID}
+						})
+
+						if (sessionCart) {
+							// Delete current user cart
+							await prisma.cart.deleteMany({
+								where: {userID: user.id}
+							});
+
+							// Assign new cart to user
+							await prisma.cart.update({
+								where: {id: sessionCart.id},
+								data: {userID: user.id}
+							})
+						};
+					};
+				};
 			};
 			return token;
 		},
