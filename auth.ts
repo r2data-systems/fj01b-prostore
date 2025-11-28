@@ -131,6 +131,25 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			return token;
 		},
 		authorized({request, auth}: any) {
+			// Create an array of regex patterns which define the protected paths
+			const protectedPaths = [
+				/\/shipping-address/,
+				/\/payment-method/,
+				/\/place-order/,
+				/\/profile/,
+				/\/user\/(.*)/,
+				/\/order\/(.*)/,
+				/\/admin/,
+			];
+
+			// Get pathname from request URL object.
+			console.log(request.nextUrl);
+			const {pathname} = request.nextUrl;
+
+			// Check if user is NOT authenticated and accessing a protected path
+			// !auth; user is logged in as a guest
+			if (!auth && protectedPaths.some((p) => (p.test(pathname)))) {return false};
+
 			// Check for session cart cookie
 			if (!request.cookies.get('sessionCartID')) {
 				// Generate new session Cart ID cookie
