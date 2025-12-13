@@ -63,7 +63,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			session.user.role = token.role;
 			session.user.name = token.name;
 
-			console.log(token);
+			//console.log(token);
 
 			// if there is an update, set the user name
 			if (trigger === 'update') {
@@ -143,7 +143,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 			];
 
 			// Get pathname from request URL object.
-			console.log(request.nextUrl);
+			//console.log(request.nextUrl);
 			const {pathname} = request.nextUrl;
 
 			// Check if user is NOT authenticated and accessing a protected path
