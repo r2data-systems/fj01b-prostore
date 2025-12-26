@@ -2,7 +2,7 @@
 
 import { cookies } from "next/headers";
 import { CartItem } from "@/types";
-import { convert2PlainObject, formatErrors, round2 } from "../utils";
+import { convert2PlainObject, formatError, round2 } from "../utils";
 import { auth } from "@/auth";
 import { prisma } from "@/db/prisma";
 import { cartItemSchema, insertCartSchema } from "../validators";
@@ -130,7 +130,7 @@ export async function addItemToCart(data: CartItem) {
   } catch (error) {
     return {
       success: false,
-      message: formatErrors(error),
+      message: formatError(error),
     };
   }
 }
@@ -228,7 +228,7 @@ export async function removeItemFromCart(productID: string) {
   } catch (error) {
 		return {
 			success: false,
-			message: formatErrors(error),
+			message: formatError(error),
 		};
 		
 	}

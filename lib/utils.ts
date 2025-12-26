@@ -19,7 +19,7 @@ export function formatNumberWithDecimal(num: number): string {
 // format errors
 // disable eslint to stop vercel from throwing errors
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function formatErrors(error: any) {
+export function formatError(error: any) {
 	console.log(error.name);
 	console.log(error.code);
 	console.log(error.errors);
