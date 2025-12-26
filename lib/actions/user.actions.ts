@@ -6,7 +6,7 @@ import { auth, signIn, signOut } from "@/auth";
 import { isRedirectError } from "next/dist/client/components/redirect-error";
 import { hashSync } from 'bcrypt-ts-edge';
 import { prisma } from '@/db/prisma';
-import { formatErrors } from "../utils";
+import { formatError } from "../utils";
 import { z } from 'zod';
 
 // Sign in the user with credentials
@@ -78,7 +78,7 @@ export async function signUpUser(prevState: unknown, formData: FormData) {
 			throw error;
 		}
 
-		return {success: false, message: formatErrors(error)};
+		return {success: false, message: formatError(error)};
 	}
 };
 
@@ -112,7 +112,7 @@ export async function updateUserAddress(data: ShippingAddress) {
 
 		return {success: true, message: 'User Address Updated'};
 	} catch (error) {
-		return {success: false, message: formatErrors(error)};
+		return {success: false, message: formatError(error)};
 	}
 }
 
@@ -141,7 +141,7 @@ export async function updateUserPaymentMethod(data: z.infer<typeof paymentMethod
 			message: 'User updated successfully!'
 		}
 	} catch (error) {
-		return {success: false, message: formatErrors(error)};
+		return {success: false, message: formatError(error)};
 	}
 	
 } 
