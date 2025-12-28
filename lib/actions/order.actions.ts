@@ -1,7 +1,7 @@
 'use server';
 
 import { isRedirectError } from "next/dist/client/components/redirect-error";
-import { formatError } from "../utils";
+import { convert2PlainObject, formatError } from "../utils";
 import { auth } from "@/auth";
 import { getMyCart } from "./cart.actions";
 import { getUserByID } from "./user.actions";
@@ -83,4 +83,16 @@ export async function createOrder() {
 
 		return ({success: false, message: formatError(error)});
 	}
+}
+
+// Get order by ID
+export async function getOrderByID(orderID: string) {
+	const data = await prisma.order.findFirst({
+    where: { id: orderID },
+    include: { orderitems: true,
+			user: {select: {email: true, name: true}}
+		 },
+  });
+	
+	return convert2PlainObject(data);
 }

@@ -11,7 +11,11 @@ Re-seed
 
 Migrate - create ORM fn from schema
 		$> npx prisma migrate dev --name init
-  
+
+Re-build after changes to schema.prism
+  $> npx prisma generate
+	$> npx prisma migrate dev --name refactore OrderItem
+
 From scratch
 $> npm run clean
 $> npx prisma dev // separate window
