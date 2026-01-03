@@ -76,7 +76,7 @@ export function formatCurrency(amount: number|string|null) {
 
 // Shorten UUID
 export function shortenId(id: string) {
-	return `..${id.substring(id.length - 6)}`;
+	return `...${id.substring(id.length - 6)}`;
 }
 
 //console.log(shortenId('d57dfd2d-3ae6-4276-92c4-19a0fc886475'));
