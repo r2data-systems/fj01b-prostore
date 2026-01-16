@@ -81,7 +81,7 @@ export async function createOrder() {
 		
 		return {success: true, message: 'Order created successfully', redirectTo: `/order/${insertedOrderID}`}
 	} catch (error) {
-		if (isRedirectError(error)) throw new Error;
+		if (isRedirectError(error)) throw new Error('createOrder; redirect error');
 
 		return ({success: false, message: formatError(error)});
 	}
@@ -106,13 +106,15 @@ export async function createPayPalOrder(orderID: string) {
 		const order = await prisma.order.findFirst({
 			where: {id: orderID}
 		});
+		console.log('ORDER;',order?.paymentResult);
 
 		if (order) {
 			// Create paypal order
 			const paypalOrder = await paypal.createOrder(Number(order.totalPrice))
+			console.log('paypal.createOrder');
 
 			// Update order with paypal order id
-			await prisma.order.update({
+			const prisma_order_result = await prisma.order.update({
 				where: {id: orderID},
 				data: {
 					paymentResult: {
@@ -124,6 +126,7 @@ export async function createPayPalOrder(orderID: string) {
 				}
 			})
 
+			//console.log('prisma_order_result', prisma_order_result);
 			return {
 				success: true,
 				message: 'Item order created successfully',
@@ -131,6 +134,7 @@ export async function createPayPalOrder(orderID: string) {
 			}
 
 		} else {
+			console.log('prisma_order_result; FAILED');
 			throw new Error('Order NOT found');
 		};
 
@@ -143,26 +147,34 @@ export async function createPayPalOrder(orderID: string) {
 // updates db with paidAt and paymentResult
 export async function approvePayPalOrder(
   orderID: string,
-  data: { paypalID: string }
+  data: { orderID: string }
 ) {
+	//console.log('order.actions.ts-approvePayPalOrder', orderID, data);
+	console.log('order.actions.ts-approvePayPalOrder');
+
   try {
     // get order from db
     const order = await prisma.order.findFirst({
       where: { id: orderID },
     });
 
+		console.log('order', order)
 		if (!order) {throw new Error('Order NOT found')};
 
-		const captureData = await paypal.capturePayment(data.paypalID);
-
+		console.log('captureData', data.orderID)
+		const captureData = await paypal.capturePayment(data.orderID);
+		console.log('captureData', captureData.status);
+		
 		if (
-      !captureData ||
-      captureData !== (order.paymentResult as PaymentResult)?.id ||
+			!captureData ||
+      captureData.id !== (order.paymentResult as PaymentResult)?.id ||
 			captureData.status !== 'COMPLETED'
     ) {
+			console.log('captureData Error');
 			throw new Error('Error in PayPal payment');
     }
-
+		
+		console.log('PRE-updateOrder2Paid');
 		// Update Order to PAID
 		await updateOrder2Paid({
 			orderID, 
@@ -172,6 +184,8 @@ export async function approvePayPalOrder(
 				emailAddress: captureData.payer.email_address,
 				pricePaid: captureData.purchase_units[0]?.payments.captures[0]?.amount?.value
 			}})
+			
+		console.log('POST-updateOrder2Paid');
 
 		revalidatePath(`/order/${orderID}`);
 
