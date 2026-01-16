@@ -19,13 +19,17 @@ const OrderDetailsPage = async (props: {
 	const order = await getOrderByID(id);
 	if (!order) notFound();
 
-	return ( 
-		<>
-			<OrderDetailsTable order={{
-				...order,
-				shippingAddress: order.shippingAddress as ShippingAddress
-			}} />
-		</> );
+	return (
+    <>
+      <OrderDetailsTable
+        order={{
+          ...order,
+          shippingAddress: order.shippingAddress as ShippingAddress,
+        }}
+				paypalClientId={process.env.PAYPAL_CLIENT_ID || 'sb'}
+      />
+    </>
+  );
 }
  
 export default OrderDetailsPage;
