@@ -121,7 +121,7 @@ export const formatDateTime = (dateString: Date) => {
   };
 };
 
-const testDate = new Date('2023-10-25T08:30:00Z');
+//const testDate = new Date('2023-10-25T08:30:00Z');
 
 //const formatted = formatDateTime(testDate);
 
