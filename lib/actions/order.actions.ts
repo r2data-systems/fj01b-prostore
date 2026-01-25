@@ -115,7 +115,7 @@ export async function createPayPalOrder(orderID: string) {
 			console.log('paypal.createOrder');
 
 			// Update order with paypal order id
-			const prisma_order_result = await prisma.order.update({
+			await prisma.order.update({
 				where: {id: orderID},
 				data: {
 					paymentResult: {
@@ -249,24 +249,24 @@ async function updateOrder2Paid({
 // Get users Orders
 export async function getMyOrders(
 	{ limit = PAGE_SIZE,
-		page
+		page,
 	}: {
-		limit?: number,
-		page: number
+		limit?: number;
+		page: number;
 	}
 ) {
 	const session = await auth();
 	if (!session) throw new Error('User NOT Authorized');
 
 	const data = await prisma.order.findMany({
-		where: {userID: session?.user?.id!},
+		where: {userID: session?.user?.id },
 		orderBy: {createdAt: 'desc'},
 		take: limit,
 		skip: (page-1)*limit,
 	});
 
-	const dataCount = await prisma.order.findMany({
-		where: {userID: session?.user?.id!},
+	const dataCount = await prisma.order.count({
+		where: {userID: session?.user?.id },
 	});
 
 	return ({
