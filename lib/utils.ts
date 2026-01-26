@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
+import qs from "query-string";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -129,3 +130,35 @@ export const formatDateTime = (dateString: Date) => {
 //console.log('Full DateTime:', formatted.dateTime);
 //console.log('Date Only', formatted.dateOnly);
 //console.log('Time Only', formatted.timeOnly);
+
+// Form the pagination links
+export function formURLQuery({
+	params,
+	key,
+	value
+}: {
+	params: string;
+	key: string;
+	value: string | null;
+}) {
+	// turns params into an object
+	const query = qs.parse(params)
+
+	// creates a destination url
+	query[key] = value;
+
+	//console.log(query);
+	console.log(qs.stringifyUrl({
+		url: window.location.pathname,
+		query,
+	}, {
+		skipNull: true
+	}))
+
+	return (qs.stringifyUrl({
+		url: window.location.pathname,
+		query,
+	}, {
+		skipNull: true
+	}));
+}
