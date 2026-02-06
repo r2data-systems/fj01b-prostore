@@ -3,7 +3,7 @@
 2) prisma server
 		$> npx prisma dev
 
-Prisma Studio
+Prisma Studio loclahost:5555
   	$> npx prisma studio
 
 Re-seed
