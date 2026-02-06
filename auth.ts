@@ -86,7 +86,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     //},
 
 		// different order of parameters
-		async jwt({ token, user, trigger }) {
+		async jwt({ token, user, trigger, session }) {
 			// Assign user fields to token
 			if (user) {
 				token.id = user.id;
@@ -128,6 +128,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 					};
 				};
 			};
+
+			// Handle session update within jwt token
+			if (session?.user.name && trigger === 'update') {
+				token.name = session.user.name;
+			}
 			return token;
 		},
 		authorized({request, auth}: any) {
