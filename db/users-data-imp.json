@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Darth Vader",
+    "email": "father@example.com",
+    "emailVerified": null,
+    "image": null,
+		"password": "123456",
+    "role": "admin",
+    "address": {
+      "fullName": "Darth Vader",
+      "streetAddress": "27, The Magpies",
+      "city": "Luton",
+      "postalCode": "LU2 0BA",
+      "country": "UK"
+    },
+    "paymentMethod": "PayPal",
+    "createdAt": "2025-09-17T23:05:05.086Z",
+    "updatedAt": "2026-02-06T17:45:55.166Z"
+  }
+]
