@@ -372,7 +372,7 @@ export async function updateOrder2PaidCOD(orderID: string) {
 // Update COD order to delivered
 export async function deliverOrder(orderID: string) {
 	try {
-		const order = prisma.order.findFirst({where: {id: orderID}})
+		const order = await prisma.order.findFirst({where: {id: orderID}})
 
 		if (!order) throw new Error('Order NOT found!');
 
