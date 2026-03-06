@@ -23,8 +23,13 @@ export const insertProductSchema = z.object({
   stock: z.coerce.number(),
   images: z.array(z.string()).min(1, "Product must have at least 1 image"),
   isFeatured: z.boolean(),
-  banner: z.string().nullable,
+  banner: z.string().nullable(),
   price: currency,
+});
+
+// schema for updating products
+export const updateProductSchema = insertProductSchema.extend({
+	id: z.string().min(1, 'ID is required'),
 });
 
 // schema for signing users in

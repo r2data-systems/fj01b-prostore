@@ -33,3 +33,19 @@ export const DEFAULT_PAYMENT_METHOD =
   process.env.DEFAULT_PAYMENT_METHOD || 'Stripe';
 
 export const PAGE_SIZE = Number(process.env.PAGE_SIZE) || 10;
+
+// Schema for inserting products
+export const insertProductSchema = {
+  name: '',
+  slug: '',
+  category: '',
+  brand: '',
+  description: '',
+  stock: 0,
+  images: [],
+  isFeatured: false,
+  banner: null,
+  price: '0',
+	rating: '0',
+	numReviews: '0',
+};
