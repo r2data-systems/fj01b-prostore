@@ -20,12 +20,41 @@ export const insertProductSchema = z.object({
   description: z
     .string()
     .min(3, "Description must be at least 3 characters long"),
-  stock: z.coerce.number(),
-  images: z.array(z.string()).min(1, "Product must have at least 1 image"),
+	stock: z
+    .coerce
+    .number<number>('Stock must be a number!')
+    .int('Stock must be an integer!')
+    .positive('Stock must be positive!'),
+	numReviews: z
+    .coerce
+    .number<number>('Number of Reviews must be a number!')
+    .int('Number of Reviews must be an integer!')
+    .positive('Number of Reviews must be positive!'),
+	images: z.array(z.string()).min(1, "Product must have at least 1 image"),
   isFeatured: z.boolean(),
   banner: z.string().nullable(),
   price: currency,
 });
+
+export const testProductSchema = z.object({
+  //name: z.string().min(3, "Name must be at least 3 characters"),
+  //slug: z.string().min(3, "Slug must be at least 3 characters"),
+  //category: z.string().min(3, "Category must be at least 3 characters"),
+  //brand: z.string().min(3, "Brand must be at least 3 characters"),
+  //description: z.string().min(3, "Description must be at least 3 characters"),
+  //stock: z.coerce.number(), -- REPLACE with following
+	stock: z
+    .coerce
+    .number<number>('Stock must be a number!')
+    .int('Stock must be an integer!')
+    .positive('Stock must be positive!'),
+  //images: z.array(z.string()).min(1, "Product must have at least one image"),
+  //isFeatured: z.boolean(),
+  //banner: z.string().nullable(),
+  //price: currency,
+});
+
+	
 
 // schema for updating products
 export const updateProductSchema = insertProductSchema.extend({

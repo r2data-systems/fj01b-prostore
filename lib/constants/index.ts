@@ -35,7 +35,22 @@ export const DEFAULT_PAYMENT_METHOD =
 export const PAGE_SIZE = Number(process.env.PAGE_SIZE) || 10;
 
 // Schema for inserting products
-export const insertProductSchema = {
+export const productDefaultValues = {
+  name: '',
+  slug: '',
+  category: '',
+  images: [''],
+  brand: '',
+  description: '',
+  price: '0',
+  stock: 0,
+	rating: '0',
+	numReviews: 0,
+  isFeatured: false,
+  banner: null,
+};
+
+export const originalDefaultValues = {
   name: '',
   slug: '',
   category: '',
@@ -48,4 +63,19 @@ export const insertProductSchema = {
   price: '0',
 	rating: '0',
 	numReviews: '0',
+};
+
+export const bradsDefaultValues = {
+  name: '',
+  slug: '',
+  category: '',
+  images: [],
+  brand: '',
+  description: '',
+  price: '0',
+  stock: 0,
+  rating: '0',
+  numReviews: '0',
+  isFeatured: false,
+  banner: null,
 };
