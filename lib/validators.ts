@@ -29,10 +29,10 @@ export const insertProductSchema = z.object({
     .coerce
     .number<number>('Number of Reviews must be a number!')
     .int('Number of Reviews must be an integer!')
-    .positive('Number of Reviews must be positive!'),
-	images: z.array(z.string()).min(1, "Product must have at least 1 image"),
-  isFeatured: z.boolean(),
-  banner: z.string().nullable(),
+    .gte(0,'Number of Reviews must be positive!'),
+	//images: z.array(z.string()).min(1, "Product must have at least 1 image"),
+  //isFeatured: z.boolean(),
+  //banner: z.string().nullable(),
   price: currency,
 });
 
