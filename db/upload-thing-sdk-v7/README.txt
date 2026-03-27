@@ -66,3 +66,6 @@ Invalid token. A token is a base64 encoded JSON object matching
 	  appId: string,
 		regions: string[]
 	}.
+
+	https://www.jwt.io/
+	

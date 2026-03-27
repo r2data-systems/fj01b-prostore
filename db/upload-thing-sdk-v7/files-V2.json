@@ -1,0 +1,13 @@
+{
+  "files": [
+    "./README.txt", 
+		"../../../resources/images/sample-products/p1-1.jpg",
+    "/home/feddev/projects/fj-shopping-platform/resources/images/sample-products/p1-2.jpg"
+  ],
+	"comments": [
+		"readme found",
+		"@p1-1 NOT FOUND",
+		"../../../ found",
+		"full path found"
+	]
+}
