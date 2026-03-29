@@ -7,10 +7,10 @@ const utapi = new UTApi({
   token: process.env.UPLOADTHING_TOKEN,
 });
 
-async function uploadFiles() {
+async function uploadFiles(filePath) {
   const results = [];
 
-  const filePath = "./README.txt";
+  //const filePath = "./README.txt";
   console.log(filePath);
 
   const absolutePath = path.resolve(filePath);
@@ -34,6 +34,8 @@ async function uploadFiles() {
   return results;
 }
 
-uploadFiles().then((res) => {
-  console.dir(res, { depth: null });
-});
+export default uploadFiles;
+
+//uploadFiles().then((res) => {
+//  console.dir(res, { depth: null });
+//});
