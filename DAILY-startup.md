@@ -33,3 +33,8 @@ Changes to Prisma
 4. Check the Output
 5. Reset Prisma Studio
 -   npx prisma studio
+
+uploadThing
+
+Image Location from db =     https://utfs.io/f/5lVCzAkG5YUHNrHzKZs4v2gX6RoUi5S9IGcYBADCzukaQjTp
+from upload-V2.js data.url = https://utfs.io/f/5lVCzAkG5YUHtsAR36ier4WlpNkxfJqHU3OZ06avMYG29Kng
