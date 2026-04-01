@@ -10,10 +10,12 @@ const utapi = new UTApi({
 // Read JSON file
 //const data = JSON.parse(fs.readFileSync("./files.json", "utf-8"));
 
+//const basePath = '/home/feddev/projects/fj-shopping-platform/resources';
+
 async function uploadFilesV2(data) {
   const results = [];
 
-  for (const filePath of data.files) {
+  for (const filePath of data) {
     try {
       const absolutePath = path.resolve(filePath);
 
@@ -25,11 +27,16 @@ async function uploadFilesV2(data) {
 
 			// Upload to UploadThing
       const res = await utapi.uploadFiles([file]);
+			const fileUrl = res[0].data?.url;
 
-			results.push({
-        file: filePath,
-        result: res,
-      });
+			console.log(fileUrl);
+
+			//results.push({
+      //  file: filePath,
+      //  result: fileUrl,
+      //});
+
+			results.push(fileUrl);
 
       console.log(`Uploaded: ${filePath}`);
     } catch (err) {
