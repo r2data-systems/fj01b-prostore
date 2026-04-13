@@ -6,6 +6,8 @@
 Prisma Studio loclahost:5555
   	$> npx prisma studio
 
+Note: webserver must be running beforehand.
+
 Re-seed
 		$> npx tsx ./db/seed
 
