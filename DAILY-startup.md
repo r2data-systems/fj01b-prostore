@@ -40,3 +40,25 @@ uploadThing
 
 Image Location from db =     https://utfs.io/f/5lVCzAkG5YUHNrHzKZs4v2gX6RoUi5S9IGcYBADCzukaQjTp
 from upload-V2.js data.url = https://utfs.io/f/5lVCzAkG5YUHtsAR36ier4WlpNkxfJqHU3OZ06avMYG29Kng
+
+Git; Update Branch merge into main
+----------------------------------
+git branch -a
+git checkout upload-thing-sdk-v7 
+
+Stage changes
+--------------
+cd db
+git add .
+cd ..
+
+clear; git log -n 4
+
+Commit changes
+--------------
+git commit -m 'UP02-05; added banner and Typescript changes'
+
+Revert to target branch and merge from upload-thing-sdk-v7
+-----------------------------------------------------------
+git checkout main
+git merge upload-thing-sdk-v7 -m '115b; Bulk loading with TS and banner added'
