@@ -1,20 +1,20 @@
 [
-  {
-    "name": "Darth Vader",
-    "email": "father@example.com",
+	{
+		"name": "Chris",
+    "email": "chris@example.com",
     "emailVerified": null,
     "image": null,
 		"password": "123456",
-    "role": "admin",
+    "role": "user",
     "address": {
-      "fullName": "Darth Vader",
-      "streetAddress": "27, The Magpies",
+      "fullName": "Chris Jenkins",
+      "streetAddress": "73 Copenhagen Close",
       "city": "Luton",
-      "postalCode": "LU2 0BA",
+      "postalCode": "LU3 7XT",
       "country": "UK"
     },
-    "paymentMethod": "PayPal",
-    "createdAt": "2025-09-17T23:05:05.086Z",
-    "updatedAt": "2026-02-06T17:45:55.166Z"
+    "paymentMethod": null,
+    "createdAt": "2025-10-18T22:56:22.618Z",
+    "updatedAt": "2025-11-20T22:41:38.333Z"
   }
 ]

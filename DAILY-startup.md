@@ -62,3 +62,10 @@ Revert to target branch and merge from upload-thing-sdk-v7
 -----------------------------------------------------------
 git checkout main
 git merge upload-thing-sdk-v7 -m '115b; Bulk loading with TS and banner added'
+
+Import Data
+
+e.g. Users edit import file
+
+$> cd db
+$> node users-import.mjs

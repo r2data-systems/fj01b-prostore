@@ -1,8 +1,8 @@
-//import DeleteDialog from "@/components/shared/delete-dialog";
+import DeleteDialog from "@/components/shared/delete-dialog";
 import Pagination from "@/components/shared/pagination";
 import { Button } from "@/components/ui/button";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-//import { deleteuser } from "@/lib/actions/user.actions";
+import { deleteUser } from "@/lib/actions/user.actions";
 import { getAllUsers } from "@/lib/actions/user.actions";
 //import { shortenId, formatDateTime, formatCurrency } from "@/lib/utils";
 import { shortenId } from "@/lib/utils";
@@ -55,7 +55,7 @@ const AdminUserPage = async (props: {
 											<Link href={`/admin/users/${user.id}`}>Edit</Link>
 										</Button>
 										{/*Delete Button*/}
-										{/*<DeleteDialog id={user.id} action={deleteuser}/>*/}
+										<DeleteDialog id={user.id} action={deleteUser}/>
                   </TableCell>
                 </TableRow>
               ))}
