@@ -60,6 +60,16 @@ export async function getAllProducts({
 	// Query Filter
 	console.log(`Query = ${query}`);
 
+	type SortOption = 'lowest' | 'highest' | 'rating';
+
+	const orderByMap: Record<SortOption, object> = {
+		lowest: { price: 'asc' },
+		highest: { price: 'desc' },
+		rating: { rating: 'desc' },
+	};
+	
+	const orderBy = orderByMap[sort as SortOption] ?? { createdAt: 'desc' };
+
 	const queryFilter: Prisma.ProductWhereInput = 
 		query && query !== 'all' ? {
 			name: {
@@ -87,7 +97,8 @@ export async function getAllProducts({
 	} : {};
 
 	const data = await prisma.product.findMany({
-    orderBy: { createdAt: 'desc' },
+    //orderBy: { createdAt: 'desc' },
+    orderBy,
     where: { 
 			...queryFilter,
 			...categoryFilter,
