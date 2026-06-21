@@ -12,7 +12,11 @@ const ReviewList = ({userID, productID, productSlug}: {
 }) => {
 	console.log(userID, productID, productSlug);
 
-	const [reviews, setReviews] = useState<Review[]>([])
+	const [reviews, setReviews] = useState<Review[]>([]);
+
+	const reload = () => {
+		console.log('Review Submitted');
+	};
 
 	return (
 		<div className="space-y-4">
@@ -20,7 +24,7 @@ const ReviewList = ({userID, productID, productSlug}: {
 			{userID ? (
 					<>
 						{/*REVIEW LINK HERE*/}
-						<ReviewForm userID={userID} productID={productID}/>
+						<ReviewForm userID={userID} productID={productID} onReviewSubmitted={reload}/>
 					</>
 				) : (
 					<div>
