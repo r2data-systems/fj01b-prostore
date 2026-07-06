@@ -38,6 +38,7 @@
     ".next/types/**/*.ts"
 , "db/main.ts", "db/sample-data.js"  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+		"temp"
   ]
 }

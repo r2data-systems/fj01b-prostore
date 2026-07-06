@@ -9,10 +9,10 @@ const nextConfig: NextConfig = {
 			port: '',
 		}]
 	},
-	devIndicators: {
-		buildActivity: false
-	}
-	//devIndicators: false
+	//devIndicators: {
+	//	buildActivity: false
+	//}
+	devIndicators: false
 };
 	
 export default nextConfig;
