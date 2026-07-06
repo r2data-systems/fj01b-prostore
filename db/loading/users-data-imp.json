@@ -1,0 +1,20 @@
+[
+	{
+		"name": "Chris",
+    "email": "chris@example.com",
+    "emailVerified": null,
+    "image": null,
+		"password": "123456",
+    "role": "user",
+    "address": {
+      "fullName": "Chris Jenkins",
+      "streetAddress": "73 Copenhagen Close",
+      "city": "Luton",
+      "postalCode": "LU3 7XT",
+      "country": "UK"
+    },
+    "paymentMethod": null,
+    "createdAt": "2025-10-18T22:56:22.618Z",
+    "updatedAt": "2025-11-20T22:41:38.333Z"
+  }
+]

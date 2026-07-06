@@ -1,17 +1,33 @@
 import { PrismaClient, Prisma } from '@prisma/client';
 import sampleData from "./sample-data.js";
-import uploadFiles, { uploadBannerV2 } from './upload-thing-sdk-v7/upload-V2.ts';
+import { uploadBannerV2, uploadImagesV2 } from './upload-thing-sdk-v7/upload-V2.ts';
 
 const prisma = new PrismaClient();
+const basePath = '/home/feddev/projects/fj-shopping-platform/resources';
+
+//type SampleProduct = {
+//  slug: string;
+//  images: string[];
+//  banner?: string | null;
+//  // add other fields from your schema here
+//};
 
 type SampleProduct = {
+  name: string;
   slug: string;
+  category: string;
+  description: string;
   images: string[];
+  price: number;
+  brand: string;
+  rating: number;
+  numReviews: number;
+  stock: number;
+  isFeatured: boolean;
   banner?: string | null;
-  // add other fields from your schema here
 };
 
-async function processProducts(sampleData: { products: SampleProduct[] }, basePath: string) {
+async function processProducts(products: SampleProduct[], basePath: string) {
   for (const prodItem of sampleData.products) {
     console.log(prodItem.slug);
 
@@ -25,7 +41,7 @@ async function processProducts(sampleData: { products: SampleProduct[] }, basePa
     console.log(updatedImages);
 
     // Upload images
-    const resImages = await uploadFiles(updatedImages);
+    const resImages = await uploadImagesV2(updatedImages);
     console.dir(resImages, { depth: null });
 
     let resBanner: string | null = null;
@@ -58,3 +74,5 @@ async function processProducts(sampleData: { products: SampleProduct[] }, basePa
     });
   }
 }
+
+processProducts(sampleData.products, basePath);

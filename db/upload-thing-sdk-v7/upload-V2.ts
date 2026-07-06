@@ -43,7 +43,7 @@ async function uploadFilesAsString(filePath: string) {
 /**
  * @param {string | string[]} data
  */
-export default async function uploadFilesV2(data: string | string[]): Promise<string | string[]> {
+async function uploadFilesV2(data: string | string[]): Promise<string | string[]> {
 	let workingData: string[] = [];
   const results = [];
 	
