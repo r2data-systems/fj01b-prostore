@@ -1,11 +1,45 @@
-import type { NextAuthConfig } from 'next-auth';
-import { NextResponse } from 'next/server';
+// auth.config.ts
+
+import type { NextAuthConfig } from "next-auth";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { NextResponse } from "next/server";
 
 export const authConfig = {
-  providers: [], // Required by NextAuthConfig type
+  pages: {
+    signIn: "/sign-in",
+    error: "/sign-in",
+  },
+
+  session: {
+    strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+
+  /**
+   * Placeholder provider.
+   *
+   * The real Credentials provider (with Prisma database lookup)
+   * is defined in auth.ts.
+   *
+   * A provider must still exist here so middleware can initialise
+   * NextAuth without importing Prisma.
+   */
+  providers: [
+    CredentialsProvider({
+      credentials: {
+        email: { type: "email" },
+        password: { type: "password" },
+      },
+
+      async authorize() {
+        return null;
+      },
+    }),
+  ],
+
   callbacks: {
     authorized({ request, auth }) {
-      // Array of regex patterns of paths we want to protect
+      // Protected routes
       const protectedPaths = [
         /\/shipping-address/,
         /\/payment-method/,
@@ -16,25 +50,24 @@ export const authConfig = {
         /\/admin/,
       ];
 
-      // Get pathname from the req URL object
       const { pathname } = request.nextUrl;
-      // Check if user is not authenticated and accessing a protected path
-      if (!auth && protectedPaths.some((p) => p.test(pathname))) return false;
 
-      // Check for session cart cookie
-      if (!request.cookies.get('sessionCartId')) {
-        // Generate new session cart id cookie
-        const sessionCartId = crypto.randomUUID();
+      // User must be authenticated
+      if (!auth && protectedPaths.some((p) => p.test(pathname))) {
+        return false;
+      }
 
-        // Create new response and add the new headers
+      // Ensure every visitor has a session cart cookie
+      if (!request.cookies.get("sessionCartID")) {
+        const sessionCartID = crypto.randomUUID();
+
         const response = NextResponse.next({
           request: {
             headers: new Headers(request.headers),
           },
         });
 
-        // Set newly generated sessionCartId in the response cookies
-        response.cookies.set('sessionCartId', sessionCartId);
+        response.cookies.set("sessionCartID", sessionCartID);
 
         return response;
       }
