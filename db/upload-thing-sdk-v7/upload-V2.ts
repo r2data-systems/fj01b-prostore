@@ -1,11 +1,27 @@
 import fs from "fs";
-import path from "path";
+//import path from "path";
 import { UTApi } from "uploadthing/server";
+import 'dotenv/config';
+
+import dotenv from "dotenv";
+
+const result = dotenv.config();
+console.dir(result);
+
+import path from "path";
+
+console.log("cwd =", process.cwd());
+console.log("env file =", path.resolve(process.cwd(), ".env"));
+console.log("UPLOADTHING_TOKEN =", !!process.env.UPLOADTHING_TOKEN);
+
+//console.log("UPLOADTHING_APP_ID",process.env.UPLOADTHING_APP_ID);
 
 // Initialize UploadThing API
 const utapi = new UTApi({
 	token: process.env.UPLOADTHING_TOKEN
 });
+
+console.log(process.env.UPLOADTHING_SECRET?.slice(0, 12));
 
 // Read JSON file
 //const data = JSON.parse(fs.readFileSync("./files.json", "utf-8"));

@@ -1,6 +1,6 @@
 import { PrismaClient, Prisma } from '@prisma/client';
 
-import sampleData from "./sample-data.js";
+import sampleData from "./sample-data-test.js";
 import { uploadImagesV2 as uploadFiles, uploadBannerV2 } from './upload-thing-sdk-v7/upload-V2.ts';
 
 //type Product = z.infer<typeof insertProductSchema>;

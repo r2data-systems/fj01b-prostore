@@ -59,7 +59,12 @@ $> env | grep UPLOADTHING
 
 UPLOADTHING_APPID=xir69tz1x5
 UPLOADTHING_TOKEN=eyJhcGlLZXkiOiJza19saXZlX2I2YjYxZjgzYzUwYTZlNTYwN2IyNzY3MmJkYjRkNGQ5MjlmMjQzN2JjNDEwZTVhNjM2NjM3YTdjZTU5YjYxZmYiLCJhcHBJZCI6InhpcjY5dHoxeDUiLCJyZWdpb25zIjpbInNlYTEiXX0
+
 UPLOADTHING_SECRET=sk_live
+
+NEW
+---
+UPLOADTHING_TOKEN=eyJhcGlLZXkiOiJza19saXZlX2RkY2RlNjVjZTEyYTY4YjI0M2FlY2U2ODYwODhlZWQ1NTBiNGZjNGYxYWRmZjYzMTk1MmY1ZWViNTZlOTJmOGMiLCJhcHBJZCI6InhpcjY5dHoxeDUiLCJyZWdpb25zIjpbInNlYTEiXX0=
 
 Invalid token. A token is a base64 encoded JSON object matching
   { apiKey: string,
@@ -68,4 +73,12 @@ Invalid token. A token is a base64 encoded JSON object matching
 	}.
 
 	https://www.jwt.io/
-	
+
+
+1. moved environment variables to .env and tested OK 
+2. tested upload-envs.js; needed to import dotenv/config
+
+TO RUN
+
+$> cd 01b-prostore/db
+$> node main.ts 
