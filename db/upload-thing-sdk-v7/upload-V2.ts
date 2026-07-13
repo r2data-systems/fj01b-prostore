@@ -1,14 +1,35 @@
 import fs from "fs";
+
+/* Code to use local .env*/ 
+import dotenv from "dotenv";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+//dotenv.config({
+//  path: path.join(__dirname, ".env"),
+//  override: true,
+//});
+
+const env = dotenv.config({
+  path: path.join(__dirname, ".env"),
+}).parsed;
+
+const token = env?.UPLOADTHING_TOKEN;
+const secret = env?.UPLOADTHING_SECRET;
+
 //import path from "path";
 import { UTApi } from "uploadthing/server";
-import 'dotenv/config';
+//import 'dotenv/config';
 
-import dotenv from "dotenv";
+//import dotenv from "dotenv";
 
-const result = dotenv.config();
-console.dir(result);
+//const result = dotenv.config();
+//console.dir(result);
 
-import path from "path";
+//import path from "path";
 
 console.log("cwd =", process.cwd());
 console.log("env file =", path.resolve(process.cwd(), ".env"));
@@ -17,11 +38,16 @@ console.log("UPLOADTHING_TOKEN =", !!process.env.UPLOADTHING_TOKEN);
 //console.log("UPLOADTHING_APP_ID",process.env.UPLOADTHING_APP_ID);
 
 // Initialize UploadThing API
+//const utapi = new UTApi({
+//	token: process.env.UPLOADTHING_TOKEN
+//});
+
 const utapi = new UTApi({
-	token: process.env.UPLOADTHING_TOKEN
+	token: token
 });
 
-console.log(process.env.UPLOADTHING_SECRET?.slice(0, 12));
+//console.log(process.env.UPLOADTHING_SECRET?.slice(0, 12));
+console.log('secret;',secret?.slice(0, 12));
 
 // Read JSON file
 //const data = JSON.parse(fs.readFileSync("./files.json", "utf-8"));
