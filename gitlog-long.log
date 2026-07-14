@@ -1,0 +1,21 @@
+* ee2c714 (HEAD -> vercel-refactor) VRCL05; .env alternate
+* d665b68 (main) 144; Update and Reload Views
+| * 5e5a21b (139/alt-default-values) 139 alt: Review Form Dialog Component w/ placeholder
+|/  
+| * 147ea75 (refs/stash) WIP on main: ce59624 138: Review List Component
+|/| 
+| * 16b3919 untracked files on main: ce59624 138: Review List Component
+* 9ac173f (134/alternate-orderByMap) 134; Part ii - Alternate orderByMap approach
+| * e1a6334 (134/course-if-elsif) 134; Part ii - Course if-then-elseif approach
+|/  
+* 1ce5979 (upload-thing-sdk-v7) UP02-05; added banner and Typescript changes
+| * 7f96c04 (UT-sdk-7V2) UP03-01; chatgpt with middleware and filerouter included NOT working
+|/  
+| * 429d9d2 (upload-thing) UP01-01; original chatgpt upload file unknown approach
+|/  
+* 4789871 (origin/main) 101a; Update Order Actions (COD); await probs
+* a9b68a6 (replaced) 33; Next Auth Catch All API route.ts
+* cd8c70d (origin/vercel-config-mk1, vercel-config-mk1) removed schema.prisma preview adapters
+| * 8784719 (generated-prisma) 27iii; removed lib/generated/prisma from .gitignore
+|/  
+* 6b45a57 Initial commit from Create Next App
