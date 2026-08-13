@@ -14,11 +14,19 @@ export async function POST(req: NextRequest) {
 
 	// Check for successful payment
 	if (event.type === 'charge.succeeded') {
-		const {object} = event.data;
+		const { object } = event.data;
+
+		console.log('STRIPE CHARGE:', {
+				id: object.id,
+				metadata: object.metadata,
+				payment_intent: object.payment_intent,
+				amount: object.amount,
+				billing_email: object.billing_details?.email,
+		});
 
 		// Update order status
 		await updateOrder2Paid({
-			orderID: object.metadata.orderId,
+			orderID: object.metadata.orderID,
 			paymentResult: {
 				id: object.id,
 				status: 'COMPLETED',
